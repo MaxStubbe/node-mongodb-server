@@ -25,10 +25,10 @@ routes.get('/recipes', function(req, res) {
 //
 routes.get('/recipes/:id', function(req, res) {
     res.contentType('application/json');
-    Recipe.findOne({_id: id})
-        .then((recipes) => {
+    Recipe.findOne({ id : _id })
+        .then((recipe) => {
             // console.log(users);
-            res.status(200).json(recipes);
+            res.status(200).json(recipe);
         })
         .catch((error) => res.status(401).json(error));
 });
