@@ -16,22 +16,22 @@ const Recipe = mongoose.model('recipe', RecipeSchema);
 
 const recipe1 = new Recipe({
     name: 'Tasty Schnitzel',
-    discription: 'A super-tasty Schnitzel - just awesome!',
+    description: 'A super-tasty Schnitzel - just awesome!',
     imagePath: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
     ingredients : [
         {name: "Meat", amount: 1 },
         { name: "French Fries", amount: 20 }
     ]
-}).save();
+})//.save();
 
 const recipe2 =  new Recipe({
     name: 'Big Fat Burger',
-    discription: 'What else you need to say?',
+    description: 'What else you need to say?',
     imagePath: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
     ingredients : [
         {name: "Buns", amount: 2 },
         { name: "Meat", amount: 1 }
     ]
-}).save();
+})//.save();
 
 module.exports = Recipe;
