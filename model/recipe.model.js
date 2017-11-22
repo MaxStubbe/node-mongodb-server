@@ -11,3 +11,7 @@ const RecipeSchema = new Schema({
         amount: Number
      }]
 });
+
+const Recipe = mongoose.model('recipe', RecipeSchema);
+
+module.exports = Recipe;
