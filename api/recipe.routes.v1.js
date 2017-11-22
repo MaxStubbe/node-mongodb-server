@@ -25,7 +25,7 @@ routes.get('/recipes', function(req, res) {
 //
 routes.get('/recipes/:id', function(req, res) {
     res.contentType('application/json');
-    Recipe.findOne({ id : _id })
+    Recipe.findById(req.params.id)
         .then((recipe) => {
             // console.log(users);
             res.status(200).json(recipe);
