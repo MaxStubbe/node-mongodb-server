@@ -1,5 +1,5 @@
 //
-// ./api/v1/user.routes.v1.js
+// ./api/v1/recipes.routes.v1.js
 //
 var express = require('express');
 var routes = express.Router();
@@ -7,13 +7,13 @@ var mongodb = require('../config/mongo.db');
 var Recipe = require('../model/recipe.model');
 
 //
-// Geef een lijst van alle users.
+// Geef een lijst van alle recipes.
 //
-routes.get('/recipe', function(req, res) {
+routes.get('/recipes', function(req, res) {
     res.contentType('application/json');
     Recipe.find({})
         .then((recipes) => {
-            // console.log(users);
+            // console.log(recipes);
             res.status(200).json(recipes);
         })
         .catch((error) => res.status(401).json(error));
@@ -23,7 +23,7 @@ routes.get('/recipe', function(req, res) {
 // Retourneer één specifieke users. Hier maken we gebruik van URL parameters.
 // Vorm van de URL: http://hostname:3000/api/v1/users/23
 //
-routes.get('/recipe/:id', function(req, res) {
+routes.get('/recipes/:id', function(req, res) {
     res.contentType('application/json');
     Recipe.findOne({_id: id})
         .then((recipes) => {
