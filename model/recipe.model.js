@@ -22,7 +22,7 @@ const recipe1 = new Recipe({
         {name: "Meat", amount: 1 },
         { name: "French Fries", amount: 20 }
     ]
-})//.save();
+}).save();
 
 const recipe2 =  new Recipe({
     name: 'Big Fat Burger',
@@ -32,6 +32,6 @@ const recipe2 =  new Recipe({
         {name: "Buns", amount: 2 },
         { name: "Meat", amount: 1 }
     ]
-})//.save();
+}).save();
 
 module.exports = Recipe;
