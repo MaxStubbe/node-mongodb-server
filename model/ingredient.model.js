@@ -11,10 +11,10 @@ const Ingredient = mongoose.model('ingredient', IngredientSchema);
 
 const ing1 = new Ingredient({
     name: "Apples", amount: 2
-}).save();
+})//.save();
 
 const ing2 = new Ingredient({
     name: "Bread", amount: 5
-}).save();
+})//.save();
 
 module.exports = Ingredient;
