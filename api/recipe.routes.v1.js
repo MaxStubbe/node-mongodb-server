@@ -37,8 +37,13 @@ routes.get('/recipes/:id', function(req, res) {
 // Voeg een user toe. De nieuwe info wordt gestuurd via de body van de request message.
 // Vorm van de URL: POST http://hostname:3000/api/v1/users
 //
-routes.post('/recipe', function(req, res) {
-
+routes.post('/recipes', function(req, res) {
+    var new_recipe = new Recipe(req.body);
+    new_recipe.save(function(err, task) {
+      if (err)
+        res.send(err);
+        res.json(task);
+    });
 });
 
 //
@@ -48,8 +53,27 @@ routes.post('/recipe', function(req, res) {
 // 
 // Vorm van de URL: PUT http://hostname:3000/api/v1/users/23
 //
-routes.put('/recipe/:id', function(req, res) {
+routes.put('/recipes/:id', function(req, res) {
 
+    res.contentType('application/json');
+    var id = req.params.id;
+
+    var update = { 
+        "name" : req.body.name, 
+        "description" : req.body.description,
+        "imagePath" : req.body.imagePath,
+        "ingredients" : req.body.ingredients 
+    };
+
+    Recipe.findById(id)
+        .then( recipe => {
+            recipe.set(update);
+            recipe.save();
+            res.status(200).json(recipe);
+            
+        })
+        .catch((error) => res.status(401).json(error));
+      
 });
 
 //
@@ -59,8 +83,15 @@ routes.put('/recipe/:id', function(req, res) {
 // 
 // Vorm van de URL: DELETE http://hostname:3000/api/v1/users/23
 //
-routes.delete('/recipe/:id', function(req, res) {
+routes.delete('/recipes/:id', function(req, res) {
+    var id = req.params.id;
 
+    Recipe.findById(id)
+        .then(recipe => { 
+            recipe.remove();
+            res.status(200).send("recipe verwijderd");
+        })
+        .catch(error => res.status(401).json(error));
 });
 
 module.exports = routes;

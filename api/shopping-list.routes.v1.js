@@ -21,15 +21,21 @@ routes.get('/shopping-list', function(req, res) {
 
 //
 // Retourneer één specifieke users. Hier maken we gebruik van URL parameters.
-// Vorm van de URL: http://hostname:3000/api/v1/users/23
+// Vorm van de URL: http://hostname:3000/api/v1/ingredient/23
 //
 routes.get('/shopping-list/:id', function(req, res) {
-   
+    res.contentType('application/json');
+    Ingredient.findById(req.params.id)
+        .then((ingredient) => {
+            // console.log(users);
+            res.status(200).json(ingredient);
+        })
+        .catch((error) => res.status(401).json(error));
 });
 
 //
 // Voeg een user toe. De nieuwe info wordt gestuurd via de body van de request message.
-// Vorm van de URL: POST http://hostname:3000/api/v1/users
+// Vorm van de URL: POST http://hostname:3000/api/v1/ingredient
 //
 routes.post('/shopping-list', function(req, res) {
     var new_ingredient = new Ingredient(req.body);
@@ -48,8 +54,25 @@ routes.post('/shopping-list', function(req, res) {
 // Vorm van de URL: PUT http://hostname:3000/api/v1/users/23
 //
 routes.put('/shopping-list/:id', function(req, res) {
-
-});
+    
+        res.contentType('application/json');
+        var id = req.params.id;
+    
+        var update = { 
+            "name" : req.body.name, 
+            "amount" : req.body.amount
+        };
+    
+        Ingredient.findById(id)
+            .then( ingredient => {
+                ingredient.set(update);
+                ingredient.save();
+                res.status(200).json(ingredient);
+                
+            })
+            .catch((error) => res.status(401).json(error));
+          
+    });
 
 //
 // Verwijder een bestaande user.
@@ -59,7 +82,14 @@ routes.put('/shopping-list/:id', function(req, res) {
 // Vorm van de URL: DELETE http://hostname:3000/api/v1/users/23
 //
 routes.delete('/shopping-list/:id', function(req, res) {
-
+    var id = req.params.id;
+    
+        Ingredient.findById(id)
+            .then(ingredient => { 
+                ingredient.remove();
+                res.status(200).send("ingredient verwijderd");
+            })
+            .catch(error => res.status(401).json(error));
 });
 
 module.exports = routes;
