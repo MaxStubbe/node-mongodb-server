@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/avansbreda.git"
+    "url": "git+https://github.com/MaxStubbe/mongodb-Games.git"
   },
   "keywords": [
     "node",
@@ -19,9 +19,9 @@
   ],
   "author": "Avans Informatica Breda",
   "license": "ISC",
-  "homepage": "https://github.com/avansbreda#readme",
+  "homepage": "https://github.com/",
   "bugs": {
-    "url": "https://github.com/avansbreda/issues"
+    "url": "https://github.com/"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
